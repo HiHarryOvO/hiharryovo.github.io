@@ -110,3 +110,7 @@ deploy:
 search:
   path: search.xml
   field: post
+
+markdown:
+  plugins:
+    - hexo-math
