@@ -468,7 +468,17 @@ a<span class="token punctuation">.</span>split<span class="token punctuation">(<
 <img src="/images/cat.jpg" title="一只猫猫" alt="猫猫" /><figcaption aria-hidden="true">猫猫</figcaption>
 </figure>
 <h3 id="公式">公式</h3>
-<p>行内公式 (a + b = c)</p>
+<p>行内公式 \(a + b = c\)</p>
+<p>英文小括号和行内公式产生冲突，修改了 <code>post.ejs</code> 中如下部分：</p>
+<pre class="line-numbers language-html" data-language="html"><code class="language-html">&lt;% if (theme.mathjax.enable &amp;&amp; page.mathjax) &#123; %>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>&lt;%- theme.mathjax.cdn %><span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">></span></span><span class="token script"><span class="token language-javascript">
+    MathJax<span class="token punctuation">.</span>Hub<span class="token punctuation">.</span><span class="token function">Config</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
+        tex2jax<span class="token operator">:</span> <span class="token punctuation">&#123;</span>inlineMath<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token string">'$'</span><span class="token punctuation">,</span> <span class="token string">'$'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">'\('</span><span class="token punctuation">,</span> <span class="token string">'\)'</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
+&lt;% &#125; %><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>用 <code>\\(</code> 和 <code>\\)</code> 替换 <code>\(</code> 和 <code>\)</code>。</p>
 <p>单独处理的公式：</p>
 <p><span class="math display">\[
 tanh = \frac{e^x-e^{-x}}{e^x+e^{-x}}
@@ -810,7 +820,7 @@ tanh = \frac{e^x-e^{-x}}{e^x+e^{-x}}
 <script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 <script>
     MathJax.Hub.Config({
-        tex2jax: {inlineMath: [['$', '$'], ['\(', '\)']]}
+        tex2jax: {inlineMath: [['$', '$'], ['\\(', '\\)']]}
     });
 </script>
 
