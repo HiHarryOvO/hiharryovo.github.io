@@ -43,7 +43,22 @@ def foo(ls)：
 
 ### 公式
 
-行内公式 \(a + b = c\)
+行内公式 \\(a + b = c\\)
+
+英文小括号和行内公式产生冲突，修改了 `post.ejs` 中如下部分：
+
+```html
+<% if (theme.mathjax.enable && page.mathjax) { %>
+<script src="<%- theme.mathjax.cdn %>"></script>
+<script>
+    MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$', '$'], ['\(', '\)']]}
+    });
+</script>
+<% } %>
+```
+
+用 `\\(` 和 `\\)` 替换 `\(` 和 `\)`。
 
 单独处理的公式：
 
